@@ -1,0 +1,19 @@
+POST http://localhost:3000/userapi/signup
+Content-Type: application/json
+
+{
+   
+    "username":"pone",
+    "email":"TELL@gmail.com",
+    "password":"1234567",
+    "confirmPassword":"1234567"
+}
+
+###
+POST http://localhost:3000/userapi/login
+Content-Type: application/json
+
+{
+    "email":"TELL@gmail.com",
+    "password":"1234567"
+}
