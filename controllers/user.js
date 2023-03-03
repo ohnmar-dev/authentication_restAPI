@@ -1,21 +1,25 @@
+require('dotenv').config()
 const User=require('../models/user')
 const bcrypt=require('bcrypt')
 const jwt=require('jsonwebtoken')
 const {userSchema}=require('../validations/user')
 const config=require('../config/config')
+const verifyToken=require('../middleware/verify')
 
 
 // for jsonwebtoke
 
-const create_jwt=async(id)=>{
+const create_jwt=async(user)=>{
     try{
-        var token = await jwt.sign({ _id:id }, config.secret_jwt);
+        var token = await jwt.sign({user}, config.secret_jwt,{expiresIn:'1h'});
         return token;
 
     }catch(err){
         res.json({message:err.message})
     }
 }
+
+
 
 // hasspassword using bcrypt
 const checkPassword=async(password)=>{
@@ -29,6 +33,21 @@ const checkPassword=async(password)=>{
         res.status(400).json({message:err.message})
     }
 }
+
+// post create
+
+const createPost=async(req,res,next)=>{
+    jwt.verify(req.token, config.secret_jwt, (err, userData)=> {
+        if(err){
+            res.sendStatus(403)
+            
+        }else {
+            res.status(200).json({message:"Post create successfully!",userData})
+        }
+        
+      });
+}
+
 // post register
 const register=async(req,res,next)=>{
     
@@ -76,14 +95,16 @@ const login=async(req,res,next)=>{
         const user = await User.findOne({ email:email })
         if(user){
             const comparePassword=await bcrypt.compare(password,user.password)
-                if(comparePassword){
-                    const createToken = await create_jwt(user._id);
+            if(comparePassword){
+                    
+                    const createToken = await create_jwt(user);
                     const userResult = {
-                        _id:user._id,
+                        
                         username:user.username,
                         email:user.email,
                         password:user.password,
                         token:createToken
+                        
                     }
                     // const respone={
                     //     success:true,
@@ -107,5 +128,6 @@ const login=async(req,res,next)=>{
 
 module.exports={
     register,
-    login
+    login,
+    createPost
 }
