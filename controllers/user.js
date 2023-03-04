@@ -42,6 +42,7 @@ const createPost=async(req,res,next)=>{
             res.sendStatus(403)
             
         }else {
+            
             res.status(200).json({message:"Post create successfully!",userData})
         }
         

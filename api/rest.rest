@@ -1,0 +1,10 @@
+POST http://localhost:3000/userapi/login
+Content-Type: application/json
+
+{
+    "email":"ohnmar@gmail.com",
+    "password":"ohnmar12232"
+}
+
+###
+POST http://localhost:3000/userapi/createPost
