@@ -8,5 +8,9 @@ router.post('/login',userController.login)
 router.post('/signup',userController.register)
 router.post('/createPost',verifyToken,userController.createPost)
 
+// router.delete('/logout',verifyToken,userController.logout)
+
+
+
 
 module.exports=router

@@ -25,4 +25,9 @@ const userSchem=new Schem({
         default:Date.now
     }
 })
+
+
+
+
+
 module.exports = mongoose.model('User',userSchem)
