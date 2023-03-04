@@ -6,5 +6,3 @@ Content-Type: application/json
     "password":"ohnmar12232"
 }
 
-###
-POST http://localhost:3000/userapi/createPost
