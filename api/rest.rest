@@ -1,0 +1,15 @@
+PATCH  http://localhost:3000/userapi/changePassword/640159b36057767d662aa9e1
+Content-Type: application/json
+
+{   "old_password":"ohnmar123456",
+    "new_password":"ohn123456"
+}
+
+###
+POST http://localhost:3000/userapi/login
+Content-Type: application/json
+
+{
+    "email":"ohnmar@gmail.com",
+    "password":"ohn123456"
+}

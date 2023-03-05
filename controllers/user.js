@@ -127,12 +127,39 @@ const login=async(req,res,next)=>{
     }
 }
 
-
+const changePassword=async(req,res)=>{
+   
+    try{
+        const user_id=req.params.id;
+        const user=await User.findOne({_id:user_id})
+        if(user){
+            const matchPassword = await bcrypt.compare(req.body.old_password,user.password)
+            if(!matchPassword){
+                return res.status(400).send("Password not matched!");
+            }else{
+                const new_password=await checkPassword(req.body.new_password)
+                const userData=await User.findByIdAndUpdate({_id:user_id},{$set:{
+                password:new_password
+            }})
+                await user.save()
+                res.json({message:"Password is updated",userData})
+            }
+        }else{
+            res.json({message:"User Id not found"})
+        }
+    }
+    catch(err){
+        res.json({message:err.message})
+    
+        
+      }
+}
 
 
 
 module.exports={
     register,
     login,
-    createPost
+    createPost,
+    changePassword
 }

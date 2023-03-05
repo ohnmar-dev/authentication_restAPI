@@ -10,7 +10,7 @@ router.post('/createPost',verifyToken,userController.createPost)
 
 // router.delete('/logout',verifyToken,userController.logout)
 
-
+router.patch('/changePassword/:id',verifyToken,userController.changePassword)
 
 
 module.exports=router
