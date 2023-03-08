@@ -23,6 +23,10 @@ const userSchem=new Schem({
     date:{
         type:Date,
         default:Date.now
+    },
+    token:{
+        type:String,
+        default:''
     }
 })
 

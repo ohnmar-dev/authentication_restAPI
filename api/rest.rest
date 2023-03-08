@@ -1,8 +1,19 @@
 PATCH  http://localhost:3000/userapi/changePassword/640159b36057767d662aa9e1
 Content-Type: application/json
 
-{   "old_password":"ohnmar123456",
-    "new_password":"ohn123456"
+{   "old_password":"fdsfsdfgdfg",
+    "new_password":"23fsa"
+}
+
+###
+POST http://localhost:3000/userapi/signup
+Content-Type: application/json
+
+{
+    "username":"asdfjl",
+    "email":"nn@gmail.com",
+    "password":"n456sfdsdfds",
+    "confirmPassword":"asdfdasdfsd"
 }
 
 ###
@@ -10,6 +21,32 @@ POST http://localhost:3000/userapi/login
 Content-Type: application/json
 
 {
-    "email":"ohnmar@gmail.com",
-    "password":"ohn123456"
+    "email":"TELL@gmail.com",
+    "password":"hello123"
+}
+
+###
+PATCH  http://localhost:3000/userapi/profile/640159b36057767d662aa9e1
+Content-Type: application/json
+
+{
+    "username":"posdfg",
+    "email":"ponepone@com"
+   
+}
+
+###
+POST http://localhost:3000/userapi/forget_password
+Content-Type: application/json
+
+{
+    "email":"TELL@gmail.com"
+}   
+
+###
+POST http://localhost:3000/userapi/reset_password/7md7r6QChLdnZ8WYI2XfZbinePjN23bd
+Content-Type: application/json
+
+{
+    "password":"hello123"
 }
